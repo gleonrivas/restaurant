@@ -9,7 +9,7 @@ public class DDBBConecction {
     private static final String password = "1234";
 
 
-    private static Connection connectToDdbb() {
+    private static Connection openConnection() {
         Connection connection;
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -19,4 +19,18 @@ public class DDBBConecction {
         }
         return connection;
     }
+
+    private static void closeConnection(Connection c) {
+        try {
+            // Cerramos conexiones
+            if (c !=null) {
+                c.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Error while closing connection: "
+                    + e.toString());
+        }
+    }
+
+
 }
