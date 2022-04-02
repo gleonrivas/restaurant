@@ -22,7 +22,6 @@ public class DDBBConecction {
 
     private static void closeConnection(Connection c) {
         try {
-            // Cerramos conexiones
             if (c !=null) {
                 c.close();
             }
