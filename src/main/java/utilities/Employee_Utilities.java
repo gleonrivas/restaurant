@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import static ddbb.DDBBConecction.*;
 
-public class employee_utilities {
+public class Employee_Utilities {
 
     public static void createEmployee(Employee employee){
         //storing in a variable the ddbb connection
