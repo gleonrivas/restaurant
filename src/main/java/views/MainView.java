@@ -45,7 +45,7 @@ public class MainView extends JFrame{
         employeeBtn.setPreferredSize(new Dimension(170,60));
         employeeBtn.setOpaque(false);
         employeeBtn.setFocusPainted(false);
-        clientBtn.addActionListener(new openEmployeeView());
+        employeeBtn.addActionListener(new openEmployeeView());
 
 
         clientBtn.setBorderPainted(true);
