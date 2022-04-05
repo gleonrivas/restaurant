@@ -43,20 +43,17 @@ public class MainView extends JFrame{
         adminBtn.setBorderPainted(true);
         adminBtn.setPreferredSize(new Dimension(170,60));
         adminBtn.setOpaque(false);
-        adminBtn.setFocusPainted(false);
         adminBtn.addActionListener(new openAdminView());
 
         employeeBtn.setBorderPainted(true);
         employeeBtn.setPreferredSize(new Dimension(170,60));
         employeeBtn.setOpaque(false);
-        employeeBtn.setFocusPainted(false);
         employeeBtn.addActionListener(new openEmployeeView());
 
 
         clientBtn.setBorderPainted(true);
         clientBtn.setPreferredSize(new Dimension(170,60));
         clientBtn.setOpaque(false);
-        clientBtn.setFocusPainted(false);
         clientBtn.addActionListener(new openClientView());
 
         setContentPane(pane);

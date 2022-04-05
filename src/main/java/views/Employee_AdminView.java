@@ -6,11 +6,17 @@ import java.awt.*;
 
 public class Employee_AdminView extends JFrame {
 
+    private JLabel idLabel;
     private JTextField idField;
+    private JLabel nameLabel;
     private JTextField nameField;
+    private JLabel surnameLabel;
     private JTextField surnameField;
+    private JLabel addressLabel;
     private JTextField addressField;
+    private JLabel phoneLabel;
     private JTextField phoneField;
+    private JLabel dniLabel;
     private JTextField dniField;
 
     private JButton createEmployeeBtn;
@@ -18,24 +24,32 @@ public class Employee_AdminView extends JFrame {
     private JButton modifyEmployeeBtn;
     private JButton deleteEmployeeBtn;
 
+    private JPanel pane;
     private JPanel paneV;
     private JPanel paneH;
 
 
     public Employee_AdminView() {
+
         //Window property.
         super("Gestión de empleados");
-        setBackground(Color.decode("#e2e2e2"));
-        setSize(800, 800);
+        setSize(450, 530);
         setLocationRelativeTo(null);
         setResizable(false);
 
 
-        //Add components here.
-        paneV.setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
+        //Adding components here.
+        pane = new JPanel();
+        pane.setOpaque(false);
 
+        paneV = new JPanel();
+        paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
+        paneV.setPreferredSize(new Dimension(300,300));
+        paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
+
+        paneH = new JPanel();
         paneH.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-
+        paneH.setPreferredSize(new Dimension(500,400));
 
         createEmployeeBtn = new JButton("Crear empleado");
         findEmployeeBtn = new JButton("Buscar empleaado");
@@ -63,19 +77,37 @@ public class Employee_AdminView extends JFrame {
         deleteEmployeeBtn.setOpaque(false);
         deleteEmployeeBtn.setFocusPainted(false);
 
+        pane.add(paneV);
+        pane.add(paneH);
 
-        paneV.add(idField);
-        paneV.add(nameField);
-        paneV.add(surnameField);
-        paneV.add(addressField);
-        paneV.add(phoneField);
-        paneV.add(dniField);
+        //Creating tags labels for each input fields.
+        idLabel = new JLabel("ID");
+        nameLabel = new JLabel("Nombre");
+        surnameLabel = new JLabel("Apellidos");
+        addressLabel = new JLabel("Dirección postal");
+        phoneLabel = new JLabel("Teléfono");
+        dniLabel = new JLabel("DNI");
 
-        //pane.add(tittle);
+
+        //Creating and styling input fields
+        idField = new JTextField(); idField.setPreferredSize(new Dimension(300, 50));
+        paneV.add(idLabel);paneV.add(idField);
+        nameField = new JTextField(); nameField.setPreferredSize(new Dimension(300, 50));
+        paneV.add(nameLabel);paneV.add(nameField);
+        surnameField = new JTextField(); surnameField.setPreferredSize(new Dimension(300, 50));
+        paneV.add(surnameLabel);paneV.add(surnameField);
+        addressField = new JTextField(); addressField.setPreferredSize(new Dimension(300, 50));
+        paneV.add(addressLabel);paneV.add(addressField);
+        phoneField = new JTextField(); phoneField.setPreferredSize(new Dimension(300, 50));
+        paneV.add(phoneLabel);paneV.add(phoneField);
+        dniField = new JTextField(); dniField.setPreferredSize(new Dimension(300, 50));
+        paneV.add(dniLabel);paneV.add(dniField);
+
         paneH.add(createEmployeeBtn);
         paneH.add(findEmployeeBtn);
         paneH.add(modifyEmployeeBtn);
         paneH.add(deleteEmployeeBtn);
+        setContentPane(pane);
 
         //No more components.
         setVisible(true);
