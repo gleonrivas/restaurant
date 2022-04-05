@@ -70,13 +70,13 @@ public class AdminView {
 
     class openProductsUIView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new EmployeeView();
+            new Products_AdminView();
         }
     }
 
     class openTablesUIView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new EmployeeView();
+            new Tables_AdminView();
         }
     }
 
