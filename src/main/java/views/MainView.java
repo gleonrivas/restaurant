@@ -8,27 +8,32 @@ import java.io.IOException;
 
 public class MainView extends JFrame{
 
+    private JLabel title;
     private JButton adminBtn;
     private JButton employeeBtn;
     private JButton clientBtn;
-    private Container pane;
+    private JPanel pane;
 
     public MainView() throws IOException {
+        
         //Window property.
-        JFrame frame = new JFrame("Menu principal");
-        frame.setBackground(Color.decode("#e2e2e2"));
-        frame.setSize(400, 200);
-        frame.setLocationRelativeTo(null);
+
+        super("Menu principal");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
 
         //Add components here.
-        pane = frame.getContentPane();
-        pane.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        pane = new JPanel();
+        pane.setOpaque(false);
 
 
-        /* Font sample:
-        tittle = new JLabel();
-        tittle.setText("Hola, elige un perfil:");
-        tittle.setFont(new Font("Chomsky", Font.PLAIN, 45));*/
+
+        title = new JLabel();
+        title.setText("Elige un perfil:");
+        title.setFont(new Font("Normal", Font.PLAIN, 35));
+        title.setForeground(Color.decode("#696969"));
 
         adminBtn = new JButton("Administración");
         employeeBtn = new JButton("Zona de empleados");
@@ -54,15 +59,15 @@ public class MainView extends JFrame{
         clientBtn.setFocusPainted(false);
         clientBtn.addActionListener(new openClientView());
 
-
-        //pane.add(tittle);
-        pane.add(adminBtn);
-        pane.add(employeeBtn);
-        pane.add(clientBtn);
+        setContentPane(pane);
+        add(title);
+        add(adminBtn);
+        add(employeeBtn);
+        add(clientBtn);
 
         //No more components.
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 

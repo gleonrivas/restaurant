@@ -17,6 +17,8 @@ public class EmployeeView{
         frame.setBackground(Color.decode("#e2e2e2"));
         frame.setSize(400, 200);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
 
         //Add components here.
         pane = frame.getContentPane();

@@ -2,6 +2,8 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AdminView {
 
@@ -14,9 +16,11 @@ public class AdminView {
     public AdminView(){
 
         JFrame frame = new JFrame("Administración");
-            frame.setBackground(Color.decode("#8888EE"));
-            frame.setSize(400, 200);
-            frame.setLocationRelativeTo(null);
+        frame.setBackground(Color.decode("#5f5fa6"));
+        frame.setSize(400, 200);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
 
         //Add components here.
         pane = frame.getContentPane();
@@ -31,19 +35,22 @@ public class AdminView {
         employeesBtn.setPreferredSize(new Dimension(170,60));
         employeesBtn.setOpaque(false);
         employeesBtn.setFocusPainted(false);
-        employeesBtn.setForeground(Color.decode("#8888EE"));
+        employeesBtn.setForeground(Color.decode("#5f5fa6"));
+        employeesBtn.addActionListener(new openEmployeeUIView());
 
         productsBtn.setBorderPainted(true);
         productsBtn.setPreferredSize(new Dimension(170,60));
         productsBtn.setOpaque(false);
         productsBtn.setFocusPainted(false);
-        productsBtn.setForeground(Color.decode("#8888EE"));
+        productsBtn.setForeground(Color.decode("#5f5fa6"));
+        productsBtn.addActionListener(new openProductsUIView());
 
         tablesBtn.setBorderPainted(true);
         tablesBtn.setPreferredSize(new Dimension(170,60));
         tablesBtn.setOpaque(false);
         tablesBtn.setFocusPainted(false);
-        tablesBtn.setForeground(Color.decode("#8888EE"));
+        tablesBtn.setForeground(Color.decode("#5f5fa6"));
+        tablesBtn.addActionListener(new openTablesUIView());
 
         //pane.add(tittle);
             pane.add(employeesBtn);
@@ -53,6 +60,24 @@ public class AdminView {
         //No more components.
             frame.setVisible(true);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    class openEmployeeUIView implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new Employee_AdminView();
+        }
+    }
+
+    class openProductsUIView implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new EmployeeView();
+        }
+    }
+
+    class openTablesUIView implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new EmployeeView();
+        }
     }
 
 }
