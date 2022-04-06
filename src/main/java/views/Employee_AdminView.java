@@ -151,11 +151,11 @@ public class Employee_AdminView extends JFrame {
 
             Person person = new Person( idData, nameData, surnameData, addressData, phoneData, dniData, employeeData);
 
-            Employee_Utilities.CreateOrUpdateEmployee(person);
+            Employee_Utilities.createEmployee(person);
         }
     }
 
-    static class findData implements ActionListener {
+    /*static class findData implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             new Employee_Utilities.;
         }

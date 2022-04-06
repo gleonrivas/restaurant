@@ -16,7 +16,7 @@ public class Employee_Utilities {
 
         try {
             //storage a query.
-            PreparedStatement insert = c.prepareStatement("insert into employee (id, pname, surname, address, phone, dni, eType)"
+            PreparedStatement insert = c.prepareStatement("insert into employee (id, name, surname, address, phone, dni, employee_type)"
                     + "values(?,?,?,?,?,?,?)");
 
             insert.setInt(1, person.getId());

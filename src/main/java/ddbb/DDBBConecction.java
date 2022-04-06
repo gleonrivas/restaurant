@@ -55,6 +55,8 @@ public class DDBBConecction {
                         PersonType.values()[rs.getInt("tipo_empleado")]);
             }
 
+
+
         } catch (SQLException sqle) {
             System.out.println("Execution not succeed:"
                     + sqle.getErrorCode() + " " + sqle.getMessage());
