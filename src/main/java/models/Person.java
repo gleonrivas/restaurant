@@ -3,20 +3,23 @@ package models;
 import java.util.Objects;
 
 public class Person {
+
     private int id;
-    private String name;
+    private String pname;
     private String surname;
     private String address;
     private int phone;
     private String dni;
+    private PersonType eType;
 
-    public Person(int id, String name, String surname, String address, int phone, String dni) {
+    public Person(int id, String pname, String surname, String address, int phone, String dni, PersonType eType) {
         this.id = id;
-        this.name = name;
+        this.pname = pname;
         this.surname = surname;
         this.address = address;
         this.phone = phone;
         this.dni = dni;
+        this.eType = eType;
     }
 
     public int getId() {
@@ -27,12 +30,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPname() {
+        return pname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
     public String getSurname() {
@@ -67,28 +70,37 @@ public class Person {
         this.dni = dni;
     }
 
+    public PersonType geteType() {
+        return eType;
+    }
+
+    public void seteType(PersonType eType) {
+        this.eType = eType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id == person.id && phone == person.phone && Objects.equals(name, person.name) && Objects.equals(surname, person.surname) && Objects.equals(address, person.address) && Objects.equals(dni, person.dni);
+        return id == person.id && phone == person.phone && Objects.equals(pname, person.pname) && Objects.equals(surname, person.surname) && Objects.equals(address, person.address) && Objects.equals(dni, person.dni) && eType == person.eType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, address, phone, dni);
+        return Objects.hash(id, pname, surname, address, phone, dni, eType);
     }
 
     @Override
     public String toString() {
-        return "person{" +
+        return "Person{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", pname='" + pname + '\'' +
                 ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
                 ", phone=" + phone +
                 ", dni='" + dni + '\'' +
+                ", eType=" + eType +
                 '}';
     }
 }
