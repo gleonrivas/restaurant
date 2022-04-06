@@ -1,6 +1,6 @@
 package utilities;
 
-import models.Employee;
+import models.Person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,21 +10,22 @@ import static ddbb.DDBBConecction.*;
 
 public class Employee_Utilities {
 
-    public static void createEmployee(Employee employee){
+    public static void createEmployee(Person person){
         //storing in a variable the ddbb connection
         Connection c = openConnection();
 
         try {
             //storage a query.
-            PreparedStatement insert = c.prepareStatement("insert into empployee (id, name, surname, address, phone, dni, eType)" + "values(?,?,?,?,?,?,?)");
+            PreparedStatement insert = c.prepareStatement("insert into employee (id, pname, surname, address, phone, dni, eType)"
+                    + "values(?,?,?,?,?,?,?)");
 
-            insert.setInt(1, employee.getId());
-            insert.setString(2, employee.getName());
-            insert.setString(3, employee.getSurname());
-            insert.setString(4, employee.getAddress());
-            insert.setInt(5, employee.getPhone());
-            insert.setString(6, employee.getDni());
-            insert.setInt(7, employee.geteType().ordinal());
+            insert.setInt(1, person.getId());
+            insert.setString(2, person.getPname());
+            insert.setString(3, person.getSurname());
+            insert.setString(4, person.getAddress());
+            insert.setInt(5, person.getPhone());
+            insert.setString(6, person.getDni());
+            insert.setString(7, person.geteType().toString());
 
             //insert execution command.
             insert.executeUpdate();
@@ -39,7 +40,7 @@ public class Employee_Utilities {
         }
     }
 
-    public static void deleteEmployee (Employee employee){
+    public static void deleteEmployee (Person person){
         //storing in a variable the ddbb connection
         Connection c = openConnection();
 
@@ -47,7 +48,7 @@ public class Employee_Utilities {
             //storage a query.
             PreparedStatement delete = c.prepareStatement("delete from employee where id = ? ");
 
-            delete.setInt(1, employee.getId());
+            delete.setInt(1, person.getId());
             //delete execution command
             delete.executeUpdate();
 
@@ -62,7 +63,7 @@ public class Employee_Utilities {
         }
     }
 
-    public static void updateEmployee(Employee employee){
+    public static void updateEmployee(Person person){
         //storing in a variable the ddbb connection
         Connection c = openConnection();
 
@@ -72,13 +73,13 @@ public class Employee_Utilities {
                     "set id = ? , name = ? , surname = ? , address = ?, phone = ?, dni = ?, employee_type = ?" +
                     "where id = ? ");
 
-            update.setInt(1, employee.getId());
-            update.setString(2, employee.getName());
-            update.setString(3, employee.getSurname());
-            update.setString(4, employee.getAddress());
-            update.setInt(5, employee.getPhone());
-            update.setString(6, employee.getDni());
-            update.setInt(7, employee.geteType().ordinal());
+            update.setInt(1, person.getId());
+            update.setString(2, person.getPname());
+            update.setString(3, person.getSurname());
+            update.setString(4, person.getAddress());
+            update.setInt(5, person.getPhone());
+            update.setString(6, person.getDni());
+            update.setString(7, person.geteType().toString());
 
 
             //update execution coomand.
@@ -94,15 +95,15 @@ public class Employee_Utilities {
         }
     }
 
-    // This create and update an employee by calling it's methods.
-    public static void CreateOrUpdateEmployee(Employee employee){
+    // This create and update an person by calling it's methods.
+    public static void CreateOrUpdateEmployee(Person person){
 
-        Employee ddbbEmployee = getById(employee.getId());
+        Person ddbbPerson = getById(person.getId());
 
-        if(ddbbEmployee != null){
-            updateEmployee(employee);
+        if(ddbbPerson != null){
+            updateEmployee(person);
         }else{
-            createEmployee(employee);
+            createEmployee(person);
         }
     }
 
