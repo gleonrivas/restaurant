@@ -1,23 +1,32 @@
 package views;
 
+import models.Person;
+import models.PersonType;
+import utilities.Employee_Utilities;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 
 
 public class Employee_AdminView extends JFrame {
 
     private JLabel idLabel;
-    private JTextField idField;
+    private static JTextField idField;
     private JLabel nameLabel;
-    private JTextField nameField;
+    private static JTextField nameField;
     private JLabel surnameLabel;
-    private JTextField surnameField;
+    private static JTextField surnameField;
     private JLabel addressLabel;
-    private JTextField addressField;
+    private static JTextField addressField;
     private JLabel phoneLabel;
-    private JTextField phoneField;
+    private static JTextField phoneField;
     private JLabel dniLabel;
-    private JTextField dniField;
+    private static JTextField dniField;
+    private JLabel eTypeLabel;
+    private static JComboBox eTypeCombo;
 
     private JButton createEmployeeBtn;
     private JButton findEmployeeBtn;
@@ -33,7 +42,7 @@ public class Employee_AdminView extends JFrame {
 
         //Window property.
         super("Gestión de empleados");
-        setSize(450, 530);
+        setSize(450, 560);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -44,7 +53,7 @@ public class Employee_AdminView extends JFrame {
 
         paneV = new JPanel();
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
-        paneV.setPreferredSize(new Dimension(300,300));
+        paneV.setPreferredSize(new Dimension(300,330));
         paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
 
         paneH = new JPanel();
@@ -61,6 +70,7 @@ public class Employee_AdminView extends JFrame {
         createEmployeeBtn.setPreferredSize(new Dimension(170,60));
         createEmployeeBtn.setOpaque(false);
         createEmployeeBtn.setFocusPainted(false);
+        createEmployeeBtn.addActionListener(new insertData());
 
         findEmployeeBtn.setBorderPainted(true);
         findEmployeeBtn.setPreferredSize(new Dimension(170,60));
@@ -87,21 +97,35 @@ public class Employee_AdminView extends JFrame {
         addressLabel = new JLabel("Dirección postal");
         phoneLabel = new JLabel("Teléfono");
         dniLabel = new JLabel("DNI");
+        eTypeLabel = new JLabel("Tipo de Empleado");
 
 
         //Creating and styling input fields
         idField = new JTextField(); idField.setPreferredSize(new Dimension(300, 50));
         paneV.add(idLabel);paneV.add(idField);
+
         nameField = new JTextField(); nameField.setPreferredSize(new Dimension(300, 50));
         paneV.add(nameLabel);paneV.add(nameField);
+
         surnameField = new JTextField(); surnameField.setPreferredSize(new Dimension(300, 50));
         paneV.add(surnameLabel);paneV.add(surnameField);
+
         addressField = new JTextField(); addressField.setPreferredSize(new Dimension(300, 50));
         paneV.add(addressLabel);paneV.add(addressField);
+
         phoneField = new JTextField(); phoneField.setPreferredSize(new Dimension(300, 50));
         paneV.add(phoneLabel);paneV.add(phoneField);
+
         dniField = new JTextField(); dniField.setPreferredSize(new Dimension(300, 50));
         paneV.add(dniLabel);paneV.add(dniField);
+
+        eTypeCombo = new JComboBox<>();
+        paneV.add(eTypeLabel);
+        for (PersonType i : PersonType.values()){
+            eTypeCombo.addItem(i);
+        }
+        paneV.add(eTypeCombo);
+
 
         paneH.add(createEmployeeBtn);
         paneH.add(findEmployeeBtn);
@@ -114,20 +138,30 @@ public class Employee_AdminView extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
-/*
-    class openAdminView implements ActionListener {
+
+    static class insertData implements ActionListener {
         public void actionPerformed(ActionEvent a) {
-            new AdminView();
+            int idData = Integer.parseInt(idField.getText());
+            String nameData = nameField.getText();
+            String surnameData = surnameField.getText();
+            String addressData = addressField.getText();
+            int phoneData = Integer.parseInt(phoneField.getText());
+            String dniData = dniField.getText();
+            PersonType employeeData = (PersonType) eTypeCombo.getSelectedItem();
+
+            Person person = new Person( idData, nameData, surnameData, addressData, phoneData, dniData, employeeData);
+
+            Employee_Utilities.CreateOrUpdateEmployee(person);
         }
     }
 
-    class openEmployeeView implements ActionListener {
+    static class findData implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new EmployeeView();
+            new Employee_Utilities.;
         }
     }
 
-    class openClientView implements ActionListener {
+    /*class openClientView implements ActionListener {
         public void actionPerformed(ActionEvent i) {
             new ClientView();
         }
