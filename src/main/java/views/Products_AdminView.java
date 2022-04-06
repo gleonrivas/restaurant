@@ -27,7 +27,7 @@ public class Products_AdminView extends JFrame{
 
         //Window property.
         super("Gestión de productos");
-        setSize(470,510);
+        setSize(440,430);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -36,7 +36,9 @@ public class Products_AdminView extends JFrame{
         pane = new JPanel();
         paneV = new JPanel();
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
-        paneV.setPreferredSize(new Dimension(300,300));
+        paneV.setPreferredSize(new Dimension(300,200));
+        paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
+
 
         paneH = new JPanel();
         paneH.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
