@@ -1,7 +1,7 @@
 package ddbb;
 
-import models.Employee;
-import models.EmployeeType;
+import models.Person;
+import models.PersonType;
 
 import java.sql.*;
 
@@ -34,10 +34,10 @@ public class DDBBConecction {
         }
     }
 
-    public static Employee getById(Integer id){
+    public static Person getById(Integer id){
 
         Connection c = openConnection();
-        Employee employee = null;
+        Person person = null;
 
         try {
             PreparedStatement query = c.prepareStatement("SELECT * FROM employee where id = ?");
@@ -45,15 +45,17 @@ public class DDBBConecction {
             ResultSet rs = query.executeQuery();
 
             while (rs.next()){
-                employee = new Employee(
+                person = new Person(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("surname"),
                         rs.getString("address"),
                         rs.getInt("phone"),
                         rs.getString("dni"),
-                        EmployeeType.values()[rs.getInt("employee_type")]);
+                        PersonType.values()[rs.getInt("tipo_empleado")]);
             }
+
+
 
         } catch (SQLException sqle) {
             System.out.println("Execution not succeed:"
@@ -63,7 +65,7 @@ public class DDBBConecction {
             closeConnection(c);
         }
 
-        return employee;
+        return person;
     }
 
 
