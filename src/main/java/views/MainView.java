@@ -12,6 +12,7 @@ public class MainView extends JFrame{
     private JButton adminBtn;
     private JButton employeeBtn;
     private JButton clientBtn;
+    private JButton coockerBtn;
     private JPanel pane;
 
     public MainView() throws IOException {
@@ -19,7 +20,7 @@ public class MainView extends JFrame{
         //Window property.
 
         super("Menu principal");
-        setSize(400, 250);
+        setSize(400, 280);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -34,10 +35,13 @@ public class MainView extends JFrame{
         title.setText("Elige un perfil:");
         title.setFont(new Font("Normal", Font.PLAIN, 35));
         title.setForeground(Color.decode("#696969"));
+        title.setBorder(BorderFactory.createEmptyBorder(15,30,15,30));
+
 
         adminBtn = new JButton("Administración");
         employeeBtn = new JButton("Zona de empleados");
         clientBtn = new JButton("Zona para clientes");
+        coockerBtn = new JButton("Oído Cocina");
 
         //Buttons stiles...
         adminBtn.setBorderPainted(true);
@@ -56,11 +60,17 @@ public class MainView extends JFrame{
         clientBtn.setOpaque(false);
         clientBtn.addActionListener(new openClientView());
 
+        coockerBtn.setBorderPainted(true);
+        coockerBtn.setPreferredSize(new Dimension(170,60));
+        coockerBtn.setOpaque(false);
+        coockerBtn.addActionListener(new openAdminView());
+
         setContentPane(pane);
         add(title);
         add(adminBtn);
         add(employeeBtn);
         add(clientBtn);
+        add(coockerBtn);
 
         //No more components.
         setVisible(true);

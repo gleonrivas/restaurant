@@ -53,7 +53,7 @@ public class Employee_AdminView extends JFrame {
 
         paneV = new JPanel();
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
-        paneV.setPreferredSize(new Dimension(300,330));
+        paneV.setPreferredSize(new Dimension(400,350));
         paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
 
         paneH = new JPanel();
@@ -101,13 +101,13 @@ public class Employee_AdminView extends JFrame {
 
 
         //Creating and styling input fields
-        idField = new JTextField(); idField.setPreferredSize(new Dimension(300, 50));
+        idField = new JTextField(); idField.setPreferredSize(new Dimension(400, 50));
         paneV.add(idLabel);paneV.add(idField);
 
-        nameField = new JTextField(); nameField.setPreferredSize(new Dimension(300, 50));
+        nameField = new JTextField(); nameField.setPreferredSize(new Dimension(400, 50));
         paneV.add(nameLabel);paneV.add(nameField);
 
-        surnameField = new JTextField(); surnameField.setPreferredSize(new Dimension(300, 50));
+        surnameField = new JTextField(); surnameField.setPreferredSize(new Dimension(400, 50));
         paneV.add(surnameLabel);paneV.add(surnameField);
 
         addressField = new JTextField(); addressField.setPreferredSize(new Dimension(300, 50));

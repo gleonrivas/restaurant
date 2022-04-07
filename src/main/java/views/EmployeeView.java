@@ -14,7 +14,6 @@ public class EmployeeView{
     public EmployeeView(){
 
         JFrame frame = new JFrame("Zona empleados");
-        frame.setBackground(Color.decode("#e2e2e2"));
         frame.setSize(400, 200);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -30,18 +29,15 @@ public class EmployeeView{
 
         //Buttons stiles...
         capacityBtn.setBorderPainted(true);
-        capacityBtn.setPreferredSize(new Dimension(170,60));
-        capacityBtn.setOpaque(false);
+        capacityBtn.setPreferredSize(new Dimension(110,60));
         capacityBtn.setFocusPainted(false);
 
         ordersBtn.setBorderPainted(true);
-        ordersBtn.setPreferredSize(new Dimension(170,60));
-        ordersBtn.setOpaque(false);
+        ordersBtn.setPreferredSize(new Dimension(110,60));
         ordersBtn.setFocusPainted(false);
 
         billsBtn.setBorderPainted(true);
-        billsBtn.setPreferredSize(new Dimension(170,60));
-        billsBtn.setOpaque(false);
+        billsBtn.setPreferredSize(new Dimension(110,60));
         billsBtn.setFocusPainted(false);
 
         //pane.add(tittle);
