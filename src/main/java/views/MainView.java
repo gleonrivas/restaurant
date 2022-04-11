@@ -33,8 +33,7 @@ public class MainView extends JFrame{
 
         title = new JLabel();
         title.setText("Elige un perfil:");
-        title.setFont(new Font("Normal", Font.PLAIN, 35));
-        title.setForeground(Color.decode("#696969"));
+        title.setFont(new Font("Georgia", Font.PLAIN, 35));
         title.setBorder(BorderFactory.createEmptyBorder(15,30,15,30));
 
 
@@ -75,7 +74,6 @@ public class MainView extends JFrame{
         //No more components.
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
     }
 
     class openAdminView implements ActionListener {
