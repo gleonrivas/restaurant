@@ -34,20 +34,20 @@ public class Products_AdminView extends JFrame{
 
         //Add components here.
         pane = new JPanel();
+        pane.setOpaque(false);
+
         paneV = new JPanel();
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
         paneV.setPreferredSize(new Dimension(300,200));
         paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
 
-
         paneH = new JPanel();
         paneH.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         paneH.setPreferredSize(new Dimension(500,400));
 
-
         createProductBtn = new JButton("Crear producto");
         findProductBtn = new JButton("Buscar producto");
-        modifyProductBtn = new JButton("Modificar productos");
+        modifyProductBtn = new JButton("Modificar Datos");
         deleteProductBtn = new JButton("Eliminar producto");
 
         //Buttons styles...
