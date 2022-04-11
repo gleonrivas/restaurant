@@ -1,9 +1,11 @@
 package utilities;
 
 import models.Person;
+import models.PersonType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static ddbb.DDBBConecction.*;
@@ -32,7 +34,7 @@ public class Employee_Utilities {
 
         //detects the error and displays its message.
         } catch (SQLException sqle) {
-            System.out.println("Error en la ejecución:"
+            System.out.println("Error while executing:"
                     + sqle.getErrorCode() + " " + sqle.getMessage());
         //finally closes connection calling closing method.
         } finally {
@@ -40,7 +42,7 @@ public class Employee_Utilities {
         }
     }
 
-    public static void deleteEmployee (Person person){
+    public static void deleteEmployee (int i){
         //storing in a variable the ddbb connection
         Connection c = openConnection();
 
@@ -48,7 +50,7 @@ public class Employee_Utilities {
             //storage a query.
             PreparedStatement delete = c.prepareStatement("delete from employee where id = ? ");
 
-            delete.setInt(1, person.getId());
+            delete.setInt(1, i);
             //delete execution command
             delete.executeUpdate();
 
@@ -80,6 +82,7 @@ public class Employee_Utilities {
             update.setInt(5, person.getPhone());
             update.setString(6, person.getDni());
             update.setString(7, person.geteType().toString());
+            update.setInt(8, person.getId());
 
 
             //update execution coomand.
@@ -105,6 +108,38 @@ public class Employee_Utilities {
         }else{
             createEmployee(person);
         }
+    }
+
+    public static Person getById(int id){
+
+        Connection c = openConnection();
+        Person person = null;
+
+        try {
+            PreparedStatement query = c.prepareStatement("SELECT * FROM employee where id = ?");
+            query.setInt(1, id);
+            ResultSet rs = query.executeQuery();
+
+            while (rs.next()){
+                person = new Person(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("address"),
+                        rs.getInt("phone"),
+                        rs.getString("dni"),
+                        PersonType.valueOf(rs.getString("employee_type")));
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Execution not succeed:"
+                    + sqle.getErrorCode() + " " + sqle.getMessage());
+
+        } finally {
+            closeConnection(c);
+        }
+
+        return person;
     }
 
 }
