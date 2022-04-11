@@ -8,11 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
+import java.io.File;
 
 
 public class Employee_AdminView extends JFrame {
 
+    private static final ImageIcon wallpaper = new ImageIcon(getImgRute());
     private JLabel idLabel;
     private static JTextField idField;
     private JLabel nameLabel;
@@ -27,38 +28,50 @@ public class Employee_AdminView extends JFrame {
     private static JTextField dniField;
     private JLabel eTypeLabel;
     private static JComboBox eTypeCombo;
-
     private JButton createEmployeeBtn;
     private JButton findEmployeeBtn;
     private JButton modifyEmployeeBtn;
     private JButton deleteEmployeeBtn;
-
-    private JPanel pane;
     private JPanel paneV;
     private JPanel paneH;
+    private JPanel bgImgPane(){
+        JPanel panel = new JPanel(){
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(wallpaper.getImage(), 0, 0, null);
+            }
+        };
+        return panel;
+    }
+    private static String getImgRute(){
+        String rute = new File("src/main/java/assets/Employee_AdminView.png").getAbsolutePath();
+        return rute;
+    }
 
 
     public Employee_AdminView() {
 
         //Window property.
         super("Gestión de empleados");
-        setSize(450, 560);
+        setSize(450, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 
 
         //Adding components here.
-        pane = new JPanel();
-        pane.setOpaque(false);
+        JPanel bgPanel = bgImgPane();
+        bgPanel.setOpaque(false);
 
         paneV = new JPanel();
+        paneV.setOpaque(false);
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
-        paneV.setPreferredSize(new Dimension(400,350));
-        paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
+        paneV.setPreferredSize(new Dimension(350,370));
+        paneV.setBorder(BorderFactory.createEmptyBorder(30,0,0,0));
 
         paneH = new JPanel();
+        paneH.setOpaque(false);
         paneH.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        paneH.setPreferredSize(new Dimension(500,400));
+        paneH.setPreferredSize(new Dimension(500,300));
 
         createEmployeeBtn = new JButton("Crear empleado");
         findEmployeeBtn = new JButton("Buscar empleaado");
@@ -70,53 +83,69 @@ public class Employee_AdminView extends JFrame {
         createEmployeeBtn.setPreferredSize(new Dimension(170,60));
         createEmployeeBtn.setOpaque(false);
         createEmployeeBtn.setFocusPainted(false);
-        createEmployeeBtn.addActionListener(new insertData());
+        createEmployeeBtn.addActionListener(new insertEmployee());
 
         findEmployeeBtn.setBorderPainted(true);
         findEmployeeBtn.setPreferredSize(new Dimension(170,60));
         findEmployeeBtn.setOpaque(false);
         findEmployeeBtn.setFocusPainted(false);
+        findEmployeeBtn.addActionListener(new findEmployee());
 
         modifyEmployeeBtn.setBorderPainted(true);
         modifyEmployeeBtn.setPreferredSize(new Dimension(170,60));
         modifyEmployeeBtn.setOpaque(false);
         modifyEmployeeBtn.setFocusPainted(false);
+        modifyEmployeeBtn.addActionListener(new updateEmployee());
 
         deleteEmployeeBtn.setBorderPainted(true);
         deleteEmployeeBtn.setPreferredSize(new Dimension(170,60));
         deleteEmployeeBtn.setOpaque(false);
         deleteEmployeeBtn.setFocusPainted(false);
+        deleteEmployeeBtn.addActionListener(new deleteEmpployee());
 
-        pane.add(paneV);
-        pane.add(paneH);
+        bgPanel.add(paneV);
+        bgPanel.add(paneH);
 
         //Creating tags labels for each input fields.
         idLabel = new JLabel("ID");
+        idLabel.setForeground(Color.white);
         nameLabel = new JLabel("Nombre");
+        nameLabel.setForeground(Color.white);
         surnameLabel = new JLabel("Apellidos");
+        surnameLabel.setForeground(Color.white);
         addressLabel = new JLabel("Dirección postal");
+        addressLabel.setForeground(Color.white);
         phoneLabel = new JLabel("Teléfono");
+        phoneLabel.setForeground(Color.white);
         dniLabel = new JLabel("DNI");
+        dniLabel.setForeground(Color.white);
         eTypeLabel = new JLabel("Tipo de Empleado");
+        eTypeLabel.setForeground(Color.white);
 
 
         //Creating and styling input fields
-        idField = new JTextField(); idField.setPreferredSize(new Dimension(400, 50));
+        idField = new JTextField();
+        idField.setPreferredSize(new Dimension(300, 50));
         paneV.add(idLabel);paneV.add(idField);
 
-        nameField = new JTextField(); nameField.setPreferredSize(new Dimension(400, 50));
+        nameField = new JTextField();
+        nameField.setPreferredSize(new Dimension(300, 50));
         paneV.add(nameLabel);paneV.add(nameField);
 
-        surnameField = new JTextField(); surnameField.setPreferredSize(new Dimension(400, 50));
+        surnameField = new JTextField();
+        surnameField.setPreferredSize(new Dimension(300, 50));
         paneV.add(surnameLabel);paneV.add(surnameField);
 
-        addressField = new JTextField(); addressField.setPreferredSize(new Dimension(300, 50));
+        addressField = new JTextField();
+        addressField.setPreferredSize(new Dimension(300, 50));
         paneV.add(addressLabel);paneV.add(addressField);
 
-        phoneField = new JTextField(); phoneField.setPreferredSize(new Dimension(300, 50));
+        phoneField = new JTextField();
+        phoneField.setPreferredSize(new Dimension(300, 50));
         paneV.add(phoneLabel);paneV.add(phoneField);
 
-        dniField = new JTextField(); dniField.setPreferredSize(new Dimension(300, 50));
+        dniField = new JTextField();
+        dniField.setPreferredSize(new Dimension(300, 50));
         paneV.add(dniLabel);paneV.add(dniField);
 
         eTypeCombo = new JComboBox<>();
@@ -131,7 +160,7 @@ public class Employee_AdminView extends JFrame {
         paneH.add(findEmployeeBtn);
         paneH.add(modifyEmployeeBtn);
         paneH.add(deleteEmployeeBtn);
-        setContentPane(pane);
+        setContentPane(bgPanel);
 
         //No more components.
         setVisible(true);
@@ -139,7 +168,7 @@ public class Employee_AdminView extends JFrame {
 
     }
 
-    static class insertData implements ActionListener {
+    static class insertEmployee implements ActionListener {
         public void actionPerformed(ActionEvent a) {
             int idData = Integer.parseInt(idField.getText());
             String nameData = nameField.getText();
@@ -155,16 +184,45 @@ public class Employee_AdminView extends JFrame {
         }
     }
 
-    /*static class findData implements ActionListener {
+    static class findEmployee implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new Employee_Utilities.;
+            int idData = Integer.parseInt(idField.getText());
+            String name = Employee_Utilities.getById(idData).getPname();
+            nameField.setText(name);
+            String surname = Employee_Utilities.getById(idData).getSurname();
+            surnameField.setText(surname);
+            String address = Employee_Utilities.getById(idData).getAddress();
+            addressField.setText(address);
+            String phone = String.valueOf(Employee_Utilities.getById(idData).getPhone());
+            phoneField.setText(phone);
+            String dni = Employee_Utilities.getById(idData).getDni();
+            dniField.setText(dni);
+            PersonType eType = Employee_Utilities.getById(idData).geteType();
+            eTypeCombo.getModel().setSelectedItem(eType);
         }
     }
 
-    /*class openClientView implements ActionListener {
-        public void actionPerformed(ActionEvent i) {
-            new ClientView();
+    static class updateEmployee implements ActionListener {
+        public void actionPerformed(ActionEvent a) {
+            int idData = Integer.parseInt(idField.getText());
+            String nameData = nameField.getText();
+            String surnameData = surnameField.getText();
+            String addressData = addressField.getText();
+            int phoneData = Integer.parseInt(phoneField.getText());
+            String dniData = dniField.getText();
+            PersonType employeeData = (PersonType) eTypeCombo.getSelectedItem();
+
+            Person person = new Person( idData, nameData, surnameData, addressData, phoneData, dniData, employeeData);
+
+            Employee_Utilities.updateEmployee(person);
         }
-    }*/
+    }
+
+    static class deleteEmpployee implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int idData = Integer.parseInt(idField.getText());
+            Employee_Utilities.deleteEmployee(idData);
+        }
+    }
 
 }
