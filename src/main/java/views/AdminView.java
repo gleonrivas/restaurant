@@ -9,30 +9,47 @@ import java.io.File;
 public class AdminView extends JFrame{
 
     private static final ImageIcon wallpaper = new ImageIcon(getImgRute());
+    private JLabel title;
     private JButton employeesBtn;
     private JButton productsBtn;
     private JButton tablesBtn;
-    private JPanel pane;
+    private JPanel btnPane;
+    private JPanel bgImgPane(){
+        JPanel panel = new JPanel(){
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(wallpaper.getImage(), 0, 0, null);
+            }
+        };
+        return panel;
+    }
+    private static String getImgRute(){
+        String rute = new File("src/main/java/assets/adminView.png").getAbsolutePath();
+        return rute;
+    }
 
 
     public AdminView(){
 
         super("Administración");
-        setSize(400, 400);
+        setSize(400, 360);
         setLocationRelativeTo(null);
         setResizable(false);
 
         JPanel bgPanel = bgImgPane();
+        bgPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
+        btnPane = new JPanel();
+        btnPane.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
-        //Add components here.
-        pane = new JPanel();
-        pane.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        pane.setBorder(BorderFactory.createEmptyBorder(270,0,0,0));
-
+        title = new JLabel("Administración");
         employeesBtn = new JButton("Empleados");
         productsBtn = new JButton("Productos");
         tablesBtn = new JButton("Mesas");
+
+        title.setFont(new Font("Georgia",Font.PLAIN, 40));
+        title.setForeground(Color.WHITE);
+        title.setBorder(BorderFactory.createEmptyBorder(40,0,120,0));
 
         //Buttons stiles...
         employeesBtn.setBorderPainted(true);
@@ -54,30 +71,16 @@ public class AdminView extends JFrame{
         tablesBtn.addActionListener(new openTablesUIView());
 
         setContentPane(bgPanel);
-        pane.setOpaque(false);
-        bgPanel.add(pane);
-        pane.add(employeesBtn);
-        pane.add(productsBtn);
-        pane.add(tablesBtn);
+        btnPane.setOpaque(false);
+        bgPanel.add(title);
+        bgPanel.add(btnPane);
+        btnPane.add(employeesBtn);
+        btnPane.add(productsBtn);
+        btnPane.add(tablesBtn);
 
         //No more components.
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-
-    private static String getImgRute(){
-        String ruta = new File("src/main/java/assets/400x400.png").getAbsolutePath();
-        return ruta;
-    }
-
-    private JPanel bgImgPane(){
-        JPanel panel = new JPanel(){
-            public void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(wallpaper.getImage(), 0, 0, null);
-            }
-        };
-        return panel;
     }
 
     class openEmployeeUIView implements ActionListener {
