@@ -34,39 +34,4 @@ public class DDBBConecction {
         }
     }
 
-    public static Person getById(Integer id){
-
-        Connection c = openConnection();
-        Person person = null;
-
-        try {
-            PreparedStatement query = c.prepareStatement("SELECT * FROM employee where id = ?");
-            query.setInt(1, id);
-            ResultSet rs = query.executeQuery();
-
-            while (rs.next()){
-                person = new Person(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getString("address"),
-                        rs.getInt("phone"),
-                        rs.getString("dni"),
-                        PersonType.values()[rs.getInt("tipo_empleado")]);
-            }
-
-
-
-        } catch (SQLException sqle) {
-            System.out.println("Execution not succeed:"
-                    + sqle.getErrorCode() + " " + sqle.getMessage());
-
-        } finally {
-            closeConnection(c);
-        }
-
-        return person;
-    }
-
-
 }
