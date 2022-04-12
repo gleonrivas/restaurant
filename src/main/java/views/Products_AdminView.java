@@ -1,12 +1,21 @@
 package views;
 
+import models.Product;
+import models.ProductType;
+import utilities.Product_Utilities;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Products_AdminView extends JFrame{
 
     private JLabel idLabel;
     private JTextField idField;
+    private JLabel typeLabel;
+    private JComboBox typeCombo;
     private JLabel codeLabel;
     private JTextField codeField;
     private JLabel nameLabel;
@@ -76,6 +85,12 @@ public class Products_AdminView extends JFrame{
 
         idLabel = new JLabel("ID"); paneV.add(idLabel);
         idField = new JTextField(); idField.setPreferredSize(new Dimension (300, 50)); paneV.add(idField);
+        typeLabel = new JLabel("Tipo"); paneV.add(typeLabel);
+        typeCombo = new JComboBox<>();
+        for (ProductType p : ProductType.values()){
+            typeCombo.addItem(p);
+        }
+        paneV.add(typeCombo);
         codeLabel = new JLabel("Código"); paneV.add(codeLabel);
         codeField = new JTextField(); codeField.setPreferredSize(new Dimension (300, 50)); paneV.add(codeField);
         nameLabel = new JLabel("Nombre"); paneV.add(nameLabel);
@@ -91,6 +106,20 @@ public class Products_AdminView extends JFrame{
 
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        class insertProducts implements ActionListener {
+            public void actionPerformed (ActionEvent a){
+                int idData = Integer.parseInt(idField.getText());
+                String typeData = Objects.requireNonNull(typeCombo.getSelectedItem()).toString();
+                int codeData = Integer.parseInt(codeField.getText());
+                String descriptionData = descriptionField.getText();
+                double priceData = Double.parseDouble(priceField.getText());
+
+                Product product = new Product(idField, typeCombo, codeField, descriptionField, priceField);
+
+                Product_Utilities.createProduct(product);
+            }
+        }
 
     }
 
