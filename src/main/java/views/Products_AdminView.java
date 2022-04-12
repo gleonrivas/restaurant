@@ -9,8 +9,8 @@ public class Products_AdminView extends JFrame{
     private JTextField idField;
     private JLabel codeLabel;
     private JTextField codeField;
-    private JLabel descripcionLabel;
-    private JTextField descriptionField;
+    private JLabel nameLabel;
+    private JTextField nameField;
     private JLabel priceLabel;
     private JTextField priceField;
 
@@ -38,7 +38,7 @@ public class Products_AdminView extends JFrame{
 
         paneV = new JPanel();
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
-        paneV.setPreferredSize(new Dimension(300,200));
+        paneV.setPreferredSize(new Dimension(350,200));
         paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
 
         paneH = new JPanel();
@@ -78,8 +78,8 @@ public class Products_AdminView extends JFrame{
         idField = new JTextField(); idField.setPreferredSize(new Dimension (300, 50)); paneV.add(idField);
         codeLabel = new JLabel("Código"); paneV.add(codeLabel);
         codeField = new JTextField(); codeField.setPreferredSize(new Dimension (300, 50)); paneV.add(codeField);
-        descripcionLabel = new JLabel("Descripción"); paneV.add(descripcionLabel);
-        descriptionField = new JTextField(); descriptionField.setPreferredSize(new Dimension (300, 50)); paneV.add(descriptionField);
+        nameLabel = new JLabel("Nombre"); paneV.add(nameLabel);
+        nameField = new JTextField(); nameField.setPreferredSize(new Dimension (300, 50)); paneV.add(nameField);
         priceLabel = new JLabel("Precio"); paneV.add(priceLabel);
         priceField = new JTextField(); priceField.setPreferredSize(new Dimension (300, 50)); paneV.add(priceField);
 
