@@ -98,17 +98,6 @@ public class Employee_Utilities {
         }
     }
 
-    // This create and update an person by calling it's methods.
-    public static void CreateOrUpdateEmployee(Person person){
-
-        Person ddbbPerson = getById(person.getId());
-
-        if(ddbbPerson != null){
-            updateEmployee(person);
-        }else{
-            createEmployee(person);
-        }
-    }
 
     public static Person getById(int id){
 

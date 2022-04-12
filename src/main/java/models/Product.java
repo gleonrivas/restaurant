@@ -1,25 +1,25 @@
 package models;
 
-import javax.swing.*;
 import java.util.Objects;
 
 public class Product {
 
     private int id;
-    private String productType;
-    private String description;
+    private ProductType productType;
+    private String name;
     private int code;
     private double price;
 
-    public Product(int id, String productType, String description, int code, double price) {
-        this.id = id;
-        this.productType = productType;
-        this.description = description;
-        this.code = code;
-        this.price = price;
+
+    public Product(int idData, String typeData, int codeData, String nameData, double priceData) {
     }
 
-    public Product(JTextField idField, JComboBox typeCombo, JTextField codeField, JTextField descriptionField, JTextField priceField) {
+    public Product(int id, ProductType productType, String name, int code, double price) {
+        this.id = id;
+        this.productType = productType;
+        this.name = name;
+        this.code = code;
+        this.price = price;
     }
 
     public int getId() {
@@ -30,20 +30,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductType() {
+    public ProductType getProductType() {
         return productType;
     }
 
-    public void setProductType(String productType) {
+    public void setProductType(ProductType productType) {
         this.productType = productType;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getCode() {
@@ -67,20 +67,21 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id && code == product.code && Double.compare(product.price, price) == 0 && Objects.equals(productType, product.productType) && Objects.equals(description, product.description);
+        return id == product.id && code == product.code && Double.compare(product.price, price) == 0 && productType == product.productType && Objects.equals(name, product.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productType, description, code, price);
+        return Objects.hash(id, productType, name, code, price);
     }
 
     @Override
-    public String toString() {
+    public String
+    toString() {
         return "Product{" +
                 "id=" + id +
-                ", productType='" + productType + '\'' +
-                ", description='" + description + '\'' +
+                ", productType=" + productType +
+                ", name='" + name + '\'' +
                 ", code=" + code +
                 ", price=" + price +
                 '}';

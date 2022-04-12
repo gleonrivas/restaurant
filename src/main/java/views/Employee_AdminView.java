@@ -101,7 +101,7 @@ public class Employee_AdminView extends JFrame {
         deleteEmployeeBtn.setPreferredSize(new Dimension(170,60));
         deleteEmployeeBtn.setOpaque(false);
         deleteEmployeeBtn.setFocusPainted(false);
-        deleteEmployeeBtn.addActionListener(new deleteEmpployee());
+        deleteEmployeeBtn.addActionListener(new deleteEmployee());
 
         bgPanel.add(paneV);
         bgPanel.add(paneH);
@@ -203,7 +203,7 @@ public class Employee_AdminView extends JFrame {
         }
     }
 
-    static class deleteEmpployee implements ActionListener {
+    static class deleteEmployee implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int idData = Integer.parseInt(idField.getText());
             Employee_Utilities.deleteEmployee(idData);
