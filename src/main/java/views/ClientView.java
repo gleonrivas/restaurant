@@ -2,6 +2,8 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ClientView{
 
@@ -28,6 +30,7 @@ public class ClientView{
         productMenuBtn.setPreferredSize(new Dimension(170,60));
         productMenuBtn.setOpaque(false);
         productMenuBtn.setFocusPainted(false);
+        productMenuBtn.addActionListener(new openMenuClientView());
 
         //pane.add(tittle);
         pane.add(productMenuBtn);
@@ -35,6 +38,12 @@ public class ClientView{
         //No more components.
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    class openMenuClientView implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            new Menu_ClientView();
+        }
     }
 
 }

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ddbb.DDBBConecction.*;
 
@@ -29,6 +31,35 @@ public class Product_Utilities {
                         rs.getString("name"),
                         rs.getInt("code"),
                         rs.getDouble("price"));
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Execution not succeed:"
+                    + sqle.getErrorCode() + " " + sqle.getMessage());
+
+        } finally {
+            closeConnection(c);
+        }
+
+        return product;
+    }
+
+    public static List<Product> getAll(){
+
+        Connection c = openConnection();
+        List <Product> product = new ArrayList<>();
+
+        try {
+            PreparedStatement query = c.prepareStatement("SELECT * FROM product");
+            ResultSet rs = query.executeQuery();
+
+            while (rs.next()){
+                product.add(new Product(
+                        rs.getInt("id"),
+                        ProductType.valueOf(rs.getString("typo")),
+                        rs.getString("name"),
+                        rs.getInt("code"),
+                        rs.getDouble("price")));
             }
 
         } catch (SQLException sqle) {
