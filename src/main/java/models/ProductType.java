@@ -1,5 +1,5 @@
 package models;
 
 public enum ProductType {
-    BEBIDA, TAPA, PLATO, POSTRES
+    BEBIDA, TAPA, PLATO, POSTRE
 }

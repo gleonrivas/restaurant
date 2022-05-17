@@ -2,16 +2,17 @@ package views;
 
 import models.Product;
 import models.ProductType;
-import utilities.Employee_Utilities;
 import utilities.Product_Utilities;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Products_AdminView extends JFrame{
 
+    private static final ImageIcon wallpaper = new ImageIcon(getImgRute());
     private JLabel idLabel;
     private static JTextField idField;
     private JLabel typeLabel;
@@ -30,7 +31,20 @@ public class Products_AdminView extends JFrame{
 
     private JPanel paneV;
     private JPanel paneH;
-    private JPanel pane;
+    private JPanel bgImgPane(){
+        JPanel panel = new JPanel(){
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(wallpaper.getImage(), 0, 0, null);
+            }
+        };
+        return panel;
+    }
+
+    private static String getImgRute(){
+        String rute = new File("src/main/java/assets/Employee_AdminView.png").getAbsolutePath();
+        return rute;
+    }
 
     public Products_AdminView (){
 
@@ -42,15 +56,17 @@ public class Products_AdminView extends JFrame{
 
 
         //Add components here.
-        pane = new JPanel();
-        pane.setOpaque(false);
+        JPanel bgPanel = bgImgPane();
+        bgPanel.setOpaque(false);
 
         paneV = new JPanel();
+        paneV.setOpaque(false);
         paneV.setLayout(new BoxLayout(paneV,BoxLayout.Y_AXIS));
         paneV.setPreferredSize(new Dimension(350,260));
         paneV.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
 
         paneH = new JPanel();
+        paneH.setOpaque(false);
         paneH.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         paneH.setPreferredSize(new Dimension(500,400));
 
@@ -84,18 +100,18 @@ public class Products_AdminView extends JFrame{
         deleteProductBtn.setFocusPainted(false);
         deleteProductBtn.addActionListener(new deleteProduct());
 
-        pane.add(paneV);
-        pane.add(paneH);
+        bgPanel.add(paneV);
+        bgPanel.add(paneH);
 
-        idLabel = new JLabel("ID"); paneV.add(idLabel);
+        idLabel = new JLabel("ID"); idLabel.setForeground(Color.white); paneV.add(idLabel);
         idField = new JTextField(); idField.setPreferredSize(new Dimension (300, 50)); paneV.add(idField);
-        codeLabel = new JLabel("Código"); paneV.add(codeLabel);
+        codeLabel = new JLabel("Código"); codeLabel.setForeground(Color.white); paneV.add(codeLabel);
         codeField = new JTextField(); codeField.setPreferredSize(new Dimension (300, 50)); paneV.add(codeField);
-        nameLabel = new JLabel("Nombre"); paneV.add(nameLabel);
+        nameLabel = new JLabel("Nombre"); nameLabel.setForeground(Color.white); paneV.add(nameLabel);
         nameField = new JTextField(); nameField.setPreferredSize(new Dimension (300, 50)); paneV.add(nameField);
-        priceLabel = new JLabel("Precio"); paneV.add(priceLabel);
+        priceLabel = new JLabel("Precio"); priceLabel.setForeground(Color.white); paneV.add(priceLabel);
         priceField = new JTextField(); priceField.setPreferredSize(new Dimension (300, 50)); paneV.add(priceField);
-        typeLabel = new JLabel("Tipo"); paneV.add(typeLabel);
+        typeLabel = new JLabel("Tipo"); typeLabel.setForeground(Color.white); paneV.add(typeLabel);
         pTypeCombo = new JComboBox<>();
         for (ProductType p : ProductType.values()){
             pTypeCombo.addItem(p);
@@ -106,14 +122,14 @@ public class Products_AdminView extends JFrame{
         paneH.add(findProductBtn);
         paneH.add(modifyProductBtn);
         paneH.add(deleteProductBtn);
-        setContentPane(pane);
+        setContentPane(bgPanel);
 
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 
-    class insertProducts implements ActionListener {
+    static class insertProducts implements ActionListener {
         public void actionPerformed (ActionEvent a){
             int idData = Integer.parseInt(idField.getText());
             ProductType typeData = (ProductType) pTypeCombo.getSelectedItem();
@@ -143,7 +159,7 @@ public class Products_AdminView extends JFrame{
         }
     }
 
-    class updateProduct implements ActionListener {
+    static class updateProduct implements ActionListener {
         public void actionPerformed (ActionEvent a){
             int idData = Integer.parseInt(idField.getText());
             ProductType typeData = (ProductType) pTypeCombo.getSelectedItem();

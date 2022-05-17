@@ -28,12 +28,15 @@ public class Employee_AdminView extends JFrame {
     private static JTextField dniField;
     private JLabel eTypeLabel;
     private static JComboBox eTypeCombo;
+
     private JButton createEmployeeBtn;
     private JButton findEmployeeBtn;
     private JButton modifyEmployeeBtn;
     private JButton deleteEmployeeBtn;
+
     private JPanel paneV;
     private JPanel paneH;
+
     private JPanel bgImgPane(){
         JPanel panel = new JPanel(){
             public void paintComponent(Graphics g) {
@@ -43,6 +46,7 @@ public class Employee_AdminView extends JFrame {
         };
         return panel;
     }
+
     private static String getImgRute(){
         String rute = new File("src/main/java/assets/Employee_AdminView.png").getAbsolutePath();
         return rute;
@@ -71,7 +75,7 @@ public class Employee_AdminView extends JFrame {
         paneH = new JPanel();
         paneH.setOpaque(false);
         paneH.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        paneH.setPreferredSize(new Dimension(500,300));
+        paneH.setPreferredSize(new Dimension(450,300));
 
         createEmployeeBtn = new JButton("Crear empleado");
         findEmployeeBtn = new JButton("Buscar empleaado");
@@ -107,33 +111,27 @@ public class Employee_AdminView extends JFrame {
         bgPanel.add(paneH);
 
         //Creating tags labels for each input fields.
-        idLabel = new JLabel("ID");
-        idLabel.setForeground(Color.white); paneV.add(idLabel);
+        idLabel = new JLabel("ID"); idLabel.setForeground(Color.white); paneV.add(idLabel);
         idField = new JTextField(); idField.setPreferredSize(new Dimension(300, 50)); paneV.add(idField);
 
-        nameLabel = new JLabel("Nombre");
-        nameLabel.setForeground(Color.white); paneV.add(nameLabel);
+        nameLabel = new JLabel("Nombre"); nameLabel.setForeground(Color.white); paneV.add(nameLabel);
         nameField = new JTextField(); nameField.setPreferredSize(new Dimension(300, 50)); paneV.add(nameField);
 
-        surnameLabel = new JLabel("Apellidos");
-        surnameLabel.setForeground(Color.white); paneV.add(surnameLabel);
+        surnameLabel = new JLabel("Apellidos"); surnameLabel.setForeground(Color.white); paneV.add(surnameLabel);
         surnameField = new JTextField(); surnameField.setPreferredSize(new Dimension(300, 50)); paneV.add(surnameField);
 
-        addressLabel = new JLabel("Dirección postal");
-        addressLabel.setForeground(Color.white); paneV.add(addressLabel);
+        addressLabel = new JLabel("Dirección postal"); addressLabel.setForeground(Color.white); paneV.add(addressLabel);
         addressField = new JTextField(); addressField.setPreferredSize(new Dimension(300, 50)); paneV.add(addressField);
 
-        phoneLabel = new JLabel("Teléfono");
-        phoneLabel.setForeground(Color.white); paneV.add(phoneLabel);
+        phoneLabel = new JLabel("Teléfono"); phoneLabel.setForeground(Color.white); paneV.add(phoneLabel);
         phoneField = new JTextField(); phoneField.setPreferredSize(new Dimension(300, 50)); paneV.add(phoneField);
 
-        dniLabel = new JLabel("DNI");
-        dniLabel.setForeground(Color.white); paneV.add(dniLabel);
+        dniLabel = new JLabel("DNI"); dniLabel.setForeground(Color.white); paneV.add(dniLabel);
         dniField = new JTextField(); dniField.setPreferredSize(new Dimension(300, 50)); paneV.add(dniField);
 
-        eTypeLabel = new JLabel("Tipo de Empleado");
-        eTypeLabel.setForeground(Color.white);
+        eTypeLabel = new JLabel("Tipo de Empleado"); eTypeLabel.setForeground(Color.white);
         eTypeCombo = new JComboBox<>();
+
         paneV.add(eTypeLabel);
         for (PersonType i : PersonType.values()){
             eTypeCombo.addItem(i);
