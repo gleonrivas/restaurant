@@ -4,16 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class MainView extends JFrame{
 
+    private static final ImageIcon wallpaper = new ImageIcon(getImgRute());
     private JLabel title;
     private JButton adminBtn;
     private JButton employeeBtn;
     private JButton clientBtn;
     private JButton coockerBtn;
-    private JPanel pane;
+    private JPanel bgPanel;
+    private JPanel bgImgPane(){
+        JPanel panel = new JPanel(){
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(wallpaper.getImage(), 0, 0, null);
+            }
+        };
+        return panel;
+    }
+    private static String getImgRute(){
+        String rute = new File("src/main/java/assets/mainView.png").getAbsolutePath();
+        return rute;
+    }
 
     public MainView() throws IOException {
         
@@ -26,13 +41,14 @@ public class MainView extends JFrame{
 
 
         //Add components here.
-        pane = new JPanel();
-        pane.setOpaque(false);
+        JPanel bgPanel = bgImgPane();
+        bgPanel.setOpaque(false);
 
 
 
         title = new JLabel();
-        title.setText("Elige un perfil:");
+        title.setText("Restaurante Marianito");
+        title.setForeground(Color.white);
         title.setFont(new Font("Georgia", Font.PLAIN, 35));
         title.setBorder(BorderFactory.createEmptyBorder(15,30,15,30));
 
@@ -64,7 +80,7 @@ public class MainView extends JFrame{
         coockerBtn.setOpaque(false);
         coockerBtn.addActionListener(new openAdminView());
 
-        setContentPane(pane);
+        setContentPane(bgPanel);
         add(title);
         add(adminBtn);
         add(employeeBtn);

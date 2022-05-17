@@ -159,7 +159,7 @@ public class Products_AdminView extends JFrame{
         }
     }
 
-    class updateProduct implements ActionListener {
+    static class updateProduct implements ActionListener {
         public void actionPerformed (ActionEvent a){
             int idData = Integer.parseInt(idField.getText());
             ProductType typeData = (ProductType) pTypeCombo.getSelectedItem();
