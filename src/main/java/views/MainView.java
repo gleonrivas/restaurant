@@ -54,7 +54,7 @@ public class MainView extends JFrame{
 
 
         adminBtn = new JButton("Administración");
-        employeeBtn = new JButton("Zona de empleados");
+        employeeBtn = new JButton("Zona camarer@s");
         clientBtn = new JButton("Zona para clientes");
         coockerBtn = new JButton("Oído Cocina");
 
