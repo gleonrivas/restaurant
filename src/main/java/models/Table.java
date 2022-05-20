@@ -5,20 +5,17 @@ import java.util.Objects;
 public class Table {
 
     private int id;
-    private int location;
     private TableAvailability tAvailability;
     private int capacity;
 
-    public Table(int id, int location, TableAvailability tAvailability, int capacity) {
+    public Table(int id, TableAvailability tAvailability, int capacity) {
         this.id = id;
-        this.location = location;
         this.tAvailability = tAvailability;
         this.capacity = capacity;
     }
 
-    public Table(int id, int location, int capacity) {
+    public Table(int id, int capacity) {
         this.id = id;
-        this.location = location;
         this.capacity = capacity;
     }
 
@@ -28,14 +25,6 @@ public class Table {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getLocation() {
-        return location;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
     }
 
     public TableAvailability gettAvailability() {
@@ -59,19 +48,18 @@ public class Table {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Table table = (Table) o;
-        return id == table.id && location == table.location && capacity == table.capacity && tAvailability == table.tAvailability;
+        return id == table.id && capacity == table.capacity && tAvailability == table.tAvailability;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, location, tAvailability, capacity);
+        return Objects.hash(id, tAvailability, capacity);
     }
 
     @Override
     public String toString() {
         return "Table{" +
                 "id=" + id +
-                ", location=" + location +
                 ", tAvailability=" + tAvailability +
                 ", capacity=" + capacity +
                 '}';
