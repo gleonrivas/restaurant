@@ -1,7 +1,5 @@
 package utilities;
 
-import models.Product;
-import models.ProductType;
 import models.Table;
 import models.TableAvailability;
 
@@ -19,13 +17,12 @@ public class Table_Utilities {
 
         try {
             //storage a query.
-            PreparedStatement insert = c.prepareStatement("insert into tables (id, location, availability, capacity)"
-                    + "values(?,?,?,?)");
+            PreparedStatement insert = c.prepareStatement("insert into tables (id, availability, capacity)"
+                    + "values(?,?,?)");
 
             insert.setInt(1, table.getId());
-            insert.setInt(2, table.getLocation());
-            insert.setString(3, table.gettAvailability().toString());
-            insert.setInt(4, table.getCapacity());
+            insert.setString(2, table.gettAvailability().toString());
+            insert.setInt(3, table.getCapacity());
             //insert execution command.
             insert.executeUpdate();
 
@@ -52,7 +49,6 @@ public class Table_Utilities {
             while (rs.next()){
                 table = new Table(
                         rs.getInt("id"),
-                        rs.getInt("location"),
                         TableAvailability.valueOf(rs.getString("availability")),
                         rs.getInt("capacity"));
             }
@@ -74,12 +70,11 @@ public class Table_Utilities {
 
         try {
             //storage a query.
-            PreparedStatement update = c.prepareStatement("UPDATE tables " + "set id = ?, location = ?, capacity = ?" + "WHERE id = ? ");
+            PreparedStatement update = c.prepareStatement("UPDATE tables " + "set id = ?, capacity = ? " + "WHERE id = ? ");
 
             update.setInt(1, table.getId());
-            update.setInt(2, table.getLocation());
-            update.setInt(3, table.getCapacity());
-            update.setInt(4, table.getId());
+            update.setInt(2, table.getCapacity());
+            update.setInt(3, table.getId());
 
 
             update.executeUpdate();
