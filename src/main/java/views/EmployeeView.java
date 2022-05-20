@@ -44,8 +44,8 @@ public class EmployeeView extends JFrame{
 
         title = new JLabel("Zona Camarer@s");
         bilssBtn = new JButton("Cuentas");
-        availabilityBtn = new JButton("Pedidos");
-        ordersBtn = new JButton("Aforo");
+        availabilityBtn = new JButton("Aforo");
+        ordersBtn = new JButton("Pedidos");
 
         title.setFont(new Font("Georgia",Font.PLAIN, 40));
         title.setForeground(Color.WHITE);
@@ -62,7 +62,7 @@ public class EmployeeView extends JFrame{
         availabilityBtn.setPreferredSize(new Dimension(100,60));
         availabilityBtn.setOpaque(false);
         availabilityBtn.setFocusPainted(false);
-        //availabilityBtn.addActionListener(new );
+        availabilityBtn.addActionListener(new openCapacityUIView());
 
         ordersBtn.setBorderPainted(true);
         ordersBtn.setPreferredSize(new Dimension(100,60));
@@ -83,21 +83,21 @@ public class EmployeeView extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    class openEmployeeUIView implements ActionListener {
+    class openCapacityUIView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new Employee_AdminView();
+            new Capacity_EmployeeView();
         }
     }
 
-    class openProductsUIView implements ActionListener {
+    class openlBillsUIView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new Products_AdminView();
+            new Bills_EmployeeView();
         }
     }
 
-    class openTablesUIView implements ActionListener {
+    class openOrdersUIView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new Tables_AdminView();
+            new Orders_EmployeeView();
         }
     }
 
