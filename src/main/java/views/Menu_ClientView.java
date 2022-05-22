@@ -5,14 +5,10 @@ import models.ProductType;
 import utilities.Product_Utilities;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class Menu_ClientView extends JFrame {
@@ -20,34 +16,31 @@ public class Menu_ClientView extends JFrame {
     private JPanel pane0;
     private JPanel pane1;
     private JLabel title;
-    private JScrollPane slider;
 
 
     public Menu_ClientView(){
 
         super("A la Carta");
-        setSize(800, 500);
+        setSize(400, 680);
         setLocationRelativeTo(null);
 
         pane0 = new JPanel();
         pane1 = new JPanel();
-        slider = new JScrollPane(new JTextArea());
         title = new JLabel("Menú a la carta");
 
-        pane0.setBackground(Color.cyan);
-        pane1.setBackground(Color.blue);
-        slider.setBackground(Color.yellow);
-        title.setBackground(Color.red);
+
+        pane0.setBackground(Color.WHITE);
 
         pane0.add(pane1);
         pane1.add(title);
+
+        pane1.setOpaque(false);
 
         pane1.setLayout(new BoxLayout(pane1,BoxLayout.Y_AXIS));
 
 
         title.setFont(new Font("Georgia", Font.PLAIN, 35));
-        title.setBorder(BorderFactory.createEmptyBorder(40, 35,0,0));
-        title.setOpaque(false);
+        title.setBorder(BorderFactory.createEmptyBorder(25, 0,25,0));
 
 
         List<Product> productList = Product_Utilities.getAll();
@@ -55,7 +48,9 @@ public class Menu_ClientView extends JFrame {
 
         for (ProductType o : productsMap.keySet()){
 
-            pane1.add(new JLabel(o.toString()));
+            JLabel x = new JLabel(o.toString());
+            x.setFont(new Font("Arial", Font.BOLD, 15));
+            pane1.add(x);
 
             String [] columNames = {"", ""};
             Object [][] dataRows = new Object[productsMap.get(o).size()][2];
@@ -71,12 +66,11 @@ public class Menu_ClientView extends JFrame {
                     row++;
                 }
             JTable table = new JTable(dataRows, columNames);
-            table.setOpaque(false);
+            table.setBackground(Color.WHITE);
             pane1.add(table);
 
         }
 
-        JTable menuContent = new JTable();
 
         setContentPane(pane0);
         setVisible(true);

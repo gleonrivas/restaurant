@@ -14,7 +14,7 @@ public class MainView extends JFrame{
     private JButton adminBtn;
     private JButton employeeBtn;
     private JButton clientBtn;
-    private JButton coockerBtn;
+    private JButton kitchenBtn;
     private JPanel bgPanel;
     private JPanel bgImgPane(){
         JPanel panel = new JPanel(){
@@ -56,7 +56,7 @@ public class MainView extends JFrame{
         adminBtn = new JButton("Administración");
         employeeBtn = new JButton("Zona camarer@s");
         clientBtn = new JButton("Zona para clientes");
-        coockerBtn = new JButton("Oído Cocina");
+        kitchenBtn = new JButton("Oído Cocina");
 
         //Buttons stiles...
         adminBtn.setBorderPainted(true);
@@ -75,17 +75,17 @@ public class MainView extends JFrame{
         clientBtn.setOpaque(false);
         clientBtn.addActionListener(new openClientView());
 
-        coockerBtn.setBorderPainted(true);
-        coockerBtn.setPreferredSize(new Dimension(170,60));
-        coockerBtn.setOpaque(false);
-        coockerBtn.addActionListener(new openAdminView());
+        kitchenBtn.setBorderPainted(true);
+        kitchenBtn.setPreferredSize(new Dimension(170,60));
+        kitchenBtn.setOpaque(false);
+        kitchenBtn.addActionListener(new openKitchenView());
 
         setContentPane(bgPanel);
         add(title);
         add(adminBtn);
         add(employeeBtn);
         add(clientBtn);
-        add(coockerBtn);
+        add(kitchenBtn);
 
         //No more components.
         setVisible(true);
@@ -107,6 +107,11 @@ public class MainView extends JFrame{
     class openClientView implements ActionListener {
         public void actionPerformed(ActionEvent i) {
             new ClientView();
+        }
+    }
+    class openKitchenView implements ActionListener {
+        public void actionPerformed(ActionEvent a) {
+            new KitchenView();
         }
     }
 

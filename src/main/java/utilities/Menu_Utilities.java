@@ -31,7 +31,6 @@ public class Menu_Utilities {
                         rs.getInt("id"),
                         ProductType.valueOf(rs.getString("typo")),
                         rs.getString("name"),
-                        rs.getInt("code"),
                         rs.getDouble("price"));
                 products.add(product);
             }

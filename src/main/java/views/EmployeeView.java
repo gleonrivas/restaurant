@@ -44,8 +44,8 @@ public class EmployeeView extends JFrame{
 
         title = new JLabel("Zona Camarer@s");
         bilssBtn = new JButton("Cuentas");
-        availabilityBtn = new JButton("Aforo");
         ordersBtn = new JButton("Pedidos");
+        availabilityBtn = new JButton("Aforo");
 
         title.setFont(new Font("Georgia",Font.PLAIN, 40));
         title.setForeground(Color.WHITE);
@@ -62,13 +62,13 @@ public class EmployeeView extends JFrame{
         availabilityBtn.setPreferredSize(new Dimension(100,60));
         availabilityBtn.setOpaque(false);
         availabilityBtn.setFocusPainted(false);
-        availabilityBtn.addActionListener(new openCapacityUIView());
+        //availabilityBtn.addActionListener(new );
 
         ordersBtn.setBorderPainted(true);
         ordersBtn.setPreferredSize(new Dimension(100,60));
         ordersBtn.setOpaque(false);
         ordersBtn.setFocusPainted(false);
-        //ordersBtn.addActionListener(new );
+        ordersBtn.addActionListener(new ordersEmployeeView());
 
         setContentPane(bgPanel);
         btnPane.setOpaque(false);
@@ -83,21 +83,21 @@ public class EmployeeView extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    class openCapacityUIView implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            new Capacity_EmployeeView();
-        }
-    }
-
-    class openlBillsUIView implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            new Bills_EmployeeView();
-        }
-    }
-
-    class openOrdersUIView implements ActionListener {
+    class ordersEmployeeView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             new Orders_EmployeeView();
+        }
+    }
+
+    class openProductsUIView implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new Products_AdminView();
+        }
+    }
+
+    class openTablesUIView implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new Tables_AdminView();
         }
     }
 

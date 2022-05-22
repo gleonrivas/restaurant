@@ -1,5 +1,6 @@
 package utilities;
 
+import models.Product;
 import models.Table;
 import models.TableAvailability;
 
@@ -7,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ddbb.DDBBConecction.closeConnection;
 import static ddbb.DDBBConecction.openConnection;
@@ -108,5 +111,35 @@ public class Table_Utilities {
         } finally {
             closeConnection(c);
         }
+    }
+
+    public static List<Table> getAllt(){
+
+        List<Table> tables = new ArrayList<>();
+
+        Connection c = openConnection();
+
+        try {
+            PreparedStatement query = c.prepareStatement("SELECT * FROM tables");
+            ResultSet rs = query.executeQuery();
+
+            while (rs.next()){
+                Table table = null;
+                table = new Table(
+                        rs.getInt("id"),
+                        TableAvailability.valueOf(rs.getString("availability")),
+                        rs.getInt("capacity"));
+                tables.add(table);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Execution not succeed:"
+                    + sqle.getErrorCode() + " " + sqle.getMessage());
+
+        } finally {
+            closeConnection(c);
+        }
+
+        return tables;
     }
 }

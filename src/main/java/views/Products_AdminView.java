@@ -17,8 +17,6 @@ public class Products_AdminView extends JFrame{
     private static JTextField idField;
     private JLabel typeLabel;
     private static JComboBox pTypeCombo;
-    private JLabel codeLabel;
-    private static JTextField codeField;
     private JLabel nameLabel;
     private static JTextField nameField;
     private JLabel priceLabel;
@@ -105,8 +103,6 @@ public class Products_AdminView extends JFrame{
 
         idLabel = new JLabel("ID"); idLabel.setForeground(Color.white); paneV.add(idLabel);
         idField = new JTextField(); idField.setPreferredSize(new Dimension (300, 50)); paneV.add(idField);
-        codeLabel = new JLabel("Código"); codeLabel.setForeground(Color.white); paneV.add(codeLabel);
-        codeField = new JTextField(); codeField.setPreferredSize(new Dimension (300, 50)); paneV.add(codeField);
         nameLabel = new JLabel("Nombre"); nameLabel.setForeground(Color.white); paneV.add(nameLabel);
         nameField = new JTextField(); nameField.setPreferredSize(new Dimension (300, 50)); paneV.add(nameField);
         priceLabel = new JLabel("Precio"); priceLabel.setForeground(Color.white); paneV.add(priceLabel);
@@ -133,11 +129,10 @@ public class Products_AdminView extends JFrame{
         public void actionPerformed (ActionEvent a){
             int idData = Integer.parseInt(idField.getText());
             ProductType typeData = (ProductType) pTypeCombo.getSelectedItem();
-            int codeData = Integer.parseInt(codeField.getText());
             String nameData = nameField.getText();
             double priceData = Double.parseDouble(priceField.getText());
 
-            Product product = new Product(idData, typeData, nameData, codeData, priceData);
+            Product product = new Product(idData, typeData, nameData, priceData);
 
             Product_Utilities.createProduct(product);
         }
@@ -149,8 +144,6 @@ public class Products_AdminView extends JFrame{
 
             String name = Product_Utilities.getById(idData).getName();
             nameField.setText(name);
-            int code = Product_Utilities.getById(idData).getCode();
-            codeField.setText(String.valueOf(code));
             double price = Product_Utilities.getById(idData).getPrice();
             priceField.setText(String.valueOf(price));
 
@@ -163,11 +156,10 @@ public class Products_AdminView extends JFrame{
         public void actionPerformed (ActionEvent a){
             int idData = Integer.parseInt(idField.getText());
             ProductType typeData = (ProductType) pTypeCombo.getSelectedItem();
-            int codeData = Integer.parseInt(codeField.getText());
             String nameData = nameField.getText();
             double priceData = Double.parseDouble(priceField.getText());
 
-            Product product = new Product(idData, typeData, nameData, codeData, priceData);
+            Product product = new Product(idData, typeData, nameData, priceData);
 
             Product_Utilities.updateProduct(product);
         }
