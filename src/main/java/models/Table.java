@@ -19,6 +19,7 @@ public class Table {
         this.capacity = capacity;
     }
 
+
     public int getId() {
         return id;
     }

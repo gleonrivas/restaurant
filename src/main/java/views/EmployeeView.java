@@ -44,8 +44,8 @@ public class EmployeeView extends JFrame{
 
         title = new JLabel("Zona Camarer@s");
         bilssBtn = new JButton("Cuentas");
-        availabilityBtn = new JButton("Pedidos");
-        ordersBtn = new JButton("Aforo");
+        ordersBtn = new JButton("Pedidos");
+        availabilityBtn = new JButton("Aforo");
 
         title.setFont(new Font("Georgia",Font.PLAIN, 40));
         title.setForeground(Color.WHITE);
@@ -68,7 +68,7 @@ public class EmployeeView extends JFrame{
         ordersBtn.setPreferredSize(new Dimension(100,60));
         ordersBtn.setOpaque(false);
         ordersBtn.setFocusPainted(false);
-        //ordersBtn.addActionListener(new );
+        ordersBtn.addActionListener(new ordersEmployeeView());
 
         setContentPane(bgPanel);
         btnPane.setOpaque(false);
@@ -83,9 +83,9 @@ public class EmployeeView extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    class openEmployeeUIView implements ActionListener {
+    class ordersEmployeeView implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            new Employee_AdminView();
+            new Orders_EmployeeView();
         }
     }
 

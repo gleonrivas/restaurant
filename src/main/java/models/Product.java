@@ -7,21 +7,14 @@ public class Product {
     private int id;
     private ProductType productType;
     private String name;
-    private int code;
     private double price;
 
-
-    public Product(int idData, String typeData, int codeData, String nameData, double priceData) {
-    }
-
-    public Product(int id, ProductType productType, String name, int code, double price) {
+    public Product(int id, ProductType productType, String name, double price) {
         this.id = id;
         this.productType = productType;
         this.name = name;
-        this.code = code;
         this.price = price;
     }
-
 
     public int getId() {
         return id;
@@ -47,14 +40,6 @@ public class Product {
         this.name = name;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -68,22 +53,20 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id && code == product.code && Double.compare(product.price, price) == 0 && productType == product.productType && Objects.equals(name, product.name);
+        return id == product.id && Double.compare(product.price, price) == 0 && productType == product.productType && Objects.equals(name, product.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productType, name, code, price);
+        return Objects.hash(id, productType, name, price);
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", productType=" + productType +
                 ", name='" + name + '\'' +
-                ", code=" + code +
                 ", price=" + price +
                 '}';
     }

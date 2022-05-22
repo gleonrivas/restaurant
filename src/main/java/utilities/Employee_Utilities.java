@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ddbb.DDBBConecction.*;
 
@@ -129,6 +131,42 @@ public class Employee_Utilities {
         }
 
         return person;
+    }
+
+    public static List<Person> getAlle(){
+
+        List<Person> employees = new ArrayList<>();
+
+        Connection c = openConnection();
+
+
+        try {
+            PreparedStatement query = c.prepareStatement("SELECT * FROM employee");
+            ResultSet rs = query.executeQuery();
+
+            while (rs.next()){
+                Person person = null;
+                person = new Person(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("address"),
+                        rs.getInt("phone"),
+                        rs.getString("dni"),
+                        PersonType.valueOf(rs.getString("employee_type")));
+
+                employees.add(person);
+            }
+
+            } catch (SQLException sqle) {
+                System.out.println("Execution not succeed:"
+                        + sqle.getErrorCode() + " " + sqle.getMessage());
+
+            } finally {
+                closeConnection(c);
+            }
+
+        return employees;
     }
 
 }

@@ -29,7 +29,6 @@ public class Product_Utilities {
                         rs.getInt("id"),
                         ProductType.valueOf(rs.getString("typo")),
                         rs.getString("name"),
-                        rs.getInt("code"),
                         rs.getDouble("price"));
             }
 
@@ -58,7 +57,6 @@ public class Product_Utilities {
                         rs.getInt("id"),
                         ProductType.valueOf(rs.getString("typo")),
                         rs.getString("name"),
-                        rs.getInt("code"),
                         rs.getDouble("price")));
             }
 
@@ -79,14 +77,13 @@ public class Product_Utilities {
 
         try {
             //storage a query.
-            PreparedStatement insert = c.prepareStatement("insert into product (id, typo, name, code, price)"
+            PreparedStatement insert = c.prepareStatement("insert into product (id, typo, name, price)"
                     + "values(?,?,?,?,?)");
 
             insert.setInt(1, product.getId());
             insert.setString(2, product.getProductType().toString());
             insert.setString(3, product.getName());
-            insert.setInt(4, product.getCode());
-            insert.setDouble(5, product.getPrice());
+            insert.setDouble(4, product.getPrice());
             //insert execution command.
             insert.executeUpdate();
 
@@ -107,15 +104,14 @@ public class Product_Utilities {
         try {
             //storage a query.
             PreparedStatement update = c.prepareStatement("update product " +
-                    "set id = ? , typo = ? , name = ? , code = ?, price = ?" +
+                    "set id = ? , typo = ? , name = ? , price = ?" +
                     "where id = ? ");
 
             update.setInt(1, product.getId());
             update.setString(2, product.getProductType().toString());
             update.setString(3, product.getName());
-            update.setInt(4, product.getCode());
-            update.setDouble(5, product.getPrice());
-            update.setInt(6, product.getId());
+            update.setDouble(4, product.getPrice());
+            update.setInt(5, product.getId());
 
             update.executeUpdate();
 
@@ -149,6 +145,35 @@ public class Product_Utilities {
             closeConnection(c);
         }
     }
+    public static List<Product> getAllp(){
 
+        List<Product> products = new ArrayList<>();
+
+        Connection c = openConnection();
+
+        try {
+            PreparedStatement query = c.prepareStatement("SELECT * FROM product");
+            ResultSet rs = query.executeQuery();
+
+            while (rs.next()){
+                Product product = null;
+                product = new Product(
+                        rs.getInt("id"),
+                        ProductType.valueOf(rs.getString("typo")),
+                        rs.getString("name"),
+                        rs.getDouble("price"));
+                products.add(product);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Execution not succeed:"
+                    + sqle.getErrorCode() + " " + sqle.getMessage());
+
+        } finally {
+            closeConnection(c);
+        }
+
+        return products;
+    }
 
 }
