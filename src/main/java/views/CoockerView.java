@@ -50,34 +50,28 @@ public class CoockerView extends JFrame{
         bgPanel.setOpaque(false);
 
         pane1 = new JPanel();
-        //pane1.setOpaque(false);
+        pane1.setOpaque(false);
         pane1.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
-        pane1.setBackground(Color.yellow);
 
         pane2 = new JPanel();
-        //pane2.setOpaque(false);
+        pane2.setOpaque(false);
         pane2.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
-        pane2.setBackground(Color.black);
 
         pane3 = new JPanel();
-        //pane3.setOpaque(false);
+        pane3.setOpaque(false);
         pane3.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 8));
-        pane3.setBackground(Color.green);
 
         pane4 = new JPanel();
-        //pane4.setOpaque(false);
+        pane4.setOpaque(false);
         pane4.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 20));
-        pane4.setBackground(Color.red);
 
         pane5 = new JPanel();
-        //pane5.setOpaque(false);
+        pane5.setOpaque(false);
         pane5.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 20));
-        pane5.setBackground(Color.PINK);
 
         pane6 = new JPanel();
-        //pane6.setOpaque(false);
+        pane6.setOpaque(false);
         pane6.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 8));
-        pane6.setBackground(Color.GRAY);
 
         hechoBtn = new JButton("Hecho");
 
