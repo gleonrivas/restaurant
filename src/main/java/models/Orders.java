@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Orders {
     private int idEmployee;
-    private int id_order;
+    private int idOrder;
     private int idTable;
     private int idProduct;
     private int quantity;
     private int state;
 
-    public Orders(int idEmployee, int id_order, int idTable, int idProduct, int quantity, int state) {
+    public Orders(int idEmployee, int idOrder, int idTable, int idProduct, int quantity, int state) {
         this.idEmployee = idEmployee;
-        this.id_order = id_order;
+        this.idOrder = idOrder;
         this.idTable = idTable;
         this.idProduct = idProduct;
         this.quantity = quantity;
@@ -27,12 +27,12 @@ public class Orders {
         this.idEmployee = idEmployee;
     }
 
-    public int getId_order() {
-        return id_order;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setId_order(int id_order) {
-        this.id_order = id_order;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public int getIdTable() {
@@ -73,19 +73,19 @@ public class Orders {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Orders orders = (Orders) o;
-        return idEmployee == orders.idEmployee && id_order == orders.id_order && idTable == orders.idTable && idProduct == orders.idProduct && quantity == orders.quantity && state == orders.state;
+        return idEmployee == orders.idEmployee && idOrder == orders.idOrder && idTable == orders.idTable && idProduct == orders.idProduct && quantity == orders.quantity && state == orders.state;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEmployee, id_order, idTable, idProduct, quantity, state);
+        return Objects.hash(idEmployee, idOrder, idTable, idProduct, quantity, state);
     }
 
     @Override
     public String toString() {
         return "Orders{" +
                 "idEmployee=" + idEmployee +
-                ", id_order=" + id_order +
+                ", id_order=" + idOrder +
                 ", idTable=" + idTable +
                 ", idProduct=" + idProduct +
                 ", quantity=" + quantity +

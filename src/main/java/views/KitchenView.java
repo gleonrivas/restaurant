@@ -33,7 +33,7 @@ public class KitchenView extends JFrame{
     public KitchenView(){
 
         super("Cocina");
-        setSize(600, 500);
+        setSize(600, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -52,26 +52,34 @@ public class KitchenView extends JFrame{
 
         componentsArea = new JPanel();
         componentsArea.setLayout(new FlowLayout(FlowLayout.CENTER));
-        componentsArea.setPreferredSize(new Dimension(600, 30));
+        componentsArea.setPreferredSize(new Dimension(600, 50));
         componentsArea.setOpaque(false);
-        componentsArea.add(new JLabel("Producto"));
-        componentsArea.add(new JLabel("Cantidad"));
+        JLabel prct = new JLabel("Producto       ");
+        prct.setFont(new Font("Arial", Font.BOLD, 15));
+        prct.setForeground(Color.white);
+        JLabel cant = new JLabel("Cantidad                                       ");
+        cant.setForeground(Color.yellow);
+        cant.setFont(new Font("Arial", Font.BOLD, 15));
+        componentsArea.add(prct);
+        componentsArea.add(cant);
         bgPanel.add(componentsArea);
 
         for (Orders order : Kitchen_Utilities.getForKitchen()){
             if (order.getState() == 0){
                 JPanel internal = new JPanel();
-                internal.setLayout(new FlowLayout(FlowLayout.CENTER));
+                internal.setBorder(BorderFactory.createEmptyBorder(0, 100, 0 ,0));
+                internal.setLayout(new FlowLayout(FlowLayout.LEFT));
                 internal.setPreferredSize(new Dimension(600, 30));
                 internal.setOpaque(false);
 
-                JLabel productName = new JLabel(Product_Utilities.getById(order.getIdProduct()).getName());
+                JLabel productName = new JLabel(Product_Utilities.getById(order.getIdProduct()).getName() + "   ");
                 productName.setForeground(Color.WHITE);
-                JLabel quantity = new JLabel(String.valueOf(order.getQuantity()));
-                quantity.setForeground(Color.WHITE);
+                JLabel quantity = new JLabel(String.valueOf(order.getQuantity()) + "  -->  ");
+                quantity.setFont(new Font("Arial", Font.BOLD, 15));
+                quantity.setForeground(Color.yellow);
 
-                JButton button = new JButton("Marcar completado");
-                button.addActionListener(new markAsDone(order));
+                JButton button = new JButton("Marcar hecho");
+                //button.addActionListener(Kitchen_Utilities.modifyState(order));
 
                 internal.add(productName);
                 internal.add(quantity);
@@ -87,9 +95,6 @@ public class KitchenView extends JFrame{
     }
 
     class markAsDone implements ActionListener {
-        public markAsDone(Orders order) {
-        }
-
         public void actionPerformed(ActionEvent e) {
 
         }
