@@ -15,7 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import static java.lang.Integer.parseInt;
 
 public class Orders_EmployeeView extends JFrame{
 
@@ -157,6 +156,7 @@ public class Orders_EmployeeView extends JFrame{
             int idEmployee = 0;
             int idTable = 0;
             int idProduct = 0;
+            int idOrder = 0;
 
             for (Person p : Employee_Utilities.getAlle()){
                 if (p.getPname().equals(employeeNameCombo.getSelectedItem())){
@@ -183,49 +183,12 @@ public class Orders_EmployeeView extends JFrame{
             int quantity = Integer.parseInt(quantityData.getText());
             int state = 0;
 
-            Orders order = new Orders(idEmployee, idTable, idProduct, quantity, state);
+            Orders order = new Orders(idEmployee, idOrder,idTable, idProduct, quantity, state);
 
             Orders_Utilities.insertIntoOrders(order);
             Orders_Utilities.insertIntoProductOrders(order);
 
-    }
-
-    /*static class findProduct implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            int idData = Integer.parseInt(idField.getText());
-
-            String name = Product_Utilities.getById(idData).getName();
-            nameField.setText(name);
-            int code = Product_Utilities.getById(idData).getCode();
-            codeField.setText(String.valueOf(code));
-            double price = Product_Utilities.getById(idData).getPrice();
-            priceField.setText(String.valueOf(price));
-
-            ProductType pType = Product_Utilities.getById(idData).getProductType();
-            pTypeCombo.getModel().setSelectedItem(pType);
         }
     }
-
-    static class updateProduct implements ActionListener {
-        public void actionPerformed (ActionEvent a){
-            int idData = Integer.parseInt(idField.getText());
-            ProductType typeData = (ProductType) pTypeCombo.getSelectedItem();
-            int codeData = Integer.parseInt(codeField.getText());
-            String nameData = nameField.getText();
-            double priceData = Double.parseDouble(priceField.getText());
-
-            Product product = new Product(idData, typeData, nameData, codeData, priceData);
-
-            Product_Utilities.updateProduct(product);
-        }
-    }
-
-    static class deleteProduct implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            int idData = Integer.parseInt(idField.getText());
-            Product_Utilities.deleteProduct(idData);
-        }*/
-    }
-
 }
 

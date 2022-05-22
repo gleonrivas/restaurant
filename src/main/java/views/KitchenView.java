@@ -1,5 +1,9 @@
 package views;
 
+import models.Orders;
+import utilities.Kitchen_Utilities;
+import utilities.Product_Utilities;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,12 +38,9 @@ public class KitchenView extends JFrame{
         setResizable(false);
 
         JPanel bgPanel = bgImgPane();
-        bgPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        bgPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        componentsArea = new JPanel();
-        componentsArea.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-        title = new JLabel("Cocinero, cocinerooo!");
+        title = new JLabel("Comandas a preparar:");
 
         title.setFont(new Font("Georgia",Font.PLAIN, 30));
         title.setForeground(Color.WHITE);
@@ -47,9 +48,38 @@ public class KitchenView extends JFrame{
 
 
         setContentPane(bgPanel);
-        componentsArea.setOpaque(false);
         bgPanel.add(title);
+
+        componentsArea = new JPanel();
+        componentsArea.setLayout(new FlowLayout(FlowLayout.CENTER));
+        componentsArea.setPreferredSize(new Dimension(600, 30));
+        componentsArea.setOpaque(false);
+        componentsArea.add(new JLabel("Producto"));
+        componentsArea.add(new JLabel("Cantidad"));
         bgPanel.add(componentsArea);
+
+        for (Orders order : Kitchen_Utilities.getForKitchen()){
+            if (order.getState() == 0){
+                JPanel internal = new JPanel();
+                internal.setLayout(new FlowLayout(FlowLayout.CENTER));
+                internal.setPreferredSize(new Dimension(600, 30));
+                internal.setOpaque(false);
+
+                JLabel productName = new JLabel(Product_Utilities.getById(order.getIdProduct()).getName());
+                productName.setForeground(Color.WHITE);
+                JLabel quantity = new JLabel(String.valueOf(order.getQuantity()));
+                quantity.setForeground(Color.WHITE);
+
+                JButton button = new JButton("Marcar completado");
+                button.addActionListener(new markAsDone(order));
+
+                internal.add(productName);
+                internal.add(quantity);
+                internal.add(button);
+
+                bgPanel.add(internal);
+            }
+        }
 
         //No more components.
         setVisible(true);
@@ -57,8 +87,11 @@ public class KitchenView extends JFrame{
     }
 
     class markAsDone implements ActionListener {
+        public markAsDone(Orders order) {
+        }
+
         public void actionPerformed(ActionEvent e) {
-            new Orders_EmployeeView();
+
         }
     }
 
