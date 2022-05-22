@@ -78,7 +78,7 @@ public class Product_Utilities {
         try {
             //storage a query.
             PreparedStatement insert = c.prepareStatement("insert into product (id, typo, name, price)"
-                    + "values(?,?,?,?,?)");
+                    + "values(?,?,?,?)");
 
             insert.setInt(1, product.getId());
             insert.setString(2, product.getProductType().toString());

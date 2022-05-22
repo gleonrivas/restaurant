@@ -141,12 +141,10 @@ public class Products_AdminView extends JFrame{
     static class findProduct implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int idData = Integer.parseInt(idField.getText());
-
             String name = Product_Utilities.getById(idData).getName();
             nameField.setText(name);
             double price = Product_Utilities.getById(idData).getPrice();
             priceField.setText(String.valueOf(price));
-
             ProductType pType = Product_Utilities.getById(idData).getProductType();
             pTypeCombo.getModel().setSelectedItem(pType);
         }
