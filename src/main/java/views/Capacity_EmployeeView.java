@@ -1,6 +1,7 @@
 package views;
 
 import models.TableAvailability;
+import utilities.Table_Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,7 +77,7 @@ public class Capacity_EmployeeView extends JFrame{
         aplicarBtn.setPreferredSize(new Dimension(100,40));
         aplicarBtn.setOpaque(true);
         aplicarBtn.setFocusPainted(false);
-        aplicarBtn.addActionListener(new LibreOcupMesa());
+        //aplicarBtn.addActionListener(new LibreOcupMesa());
 
         bgPanel.add(paneT1);
         bgPanel.add(paneT2);
@@ -98,11 +99,12 @@ public class Capacity_EmployeeView extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    static class LibreOcupMesa implements ActionListener {
+    /*static class LibreOcupMesa implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            int id = ;
+            TableAvailability availability = Table_Utilities.getById()
+            MesaCombo;
         }
-    }
+    }*/
 
 }
 

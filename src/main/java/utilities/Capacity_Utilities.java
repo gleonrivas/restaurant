@@ -13,7 +13,7 @@ import static ddbb.DDBBConecction.openConnection;
 
 public class Capacity_Utilities {
 
-    public static void getAvailability(int id){
+    /*public static void getAvailability(int id){
         Connection c = openConnection();
         Table table = null;
 
@@ -30,6 +30,6 @@ public class Capacity_Utilities {
 
         } catch (SQLException e) {
         }
-    }
+    }*/
 
 }

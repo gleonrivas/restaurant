@@ -78,7 +78,7 @@ public class MainView extends JFrame{
         coockerBtn.setBorderPainted(true);
         coockerBtn.setPreferredSize(new Dimension(170,60));
         coockerBtn.setOpaque(false);
-        coockerBtn.addActionListener(new openAdminView());
+        coockerBtn.addActionListener(new openCoockerView());
 
         setContentPane(bgPanel);
         add(title);
@@ -109,6 +109,12 @@ public class MainView extends JFrame{
             new ClientView();
         }
     }
+
+    class openCoockerView implements ActionListener {
+        public void actionPerformed(ActionEvent i) { new CoockerView(); }
+    }
+
+
 
     public static void main(String args[]) throws IOException {
         MainView mainMenu = new MainView();
