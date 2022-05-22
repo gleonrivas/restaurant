@@ -106,7 +106,12 @@ public class MainView extends JFrame{
 
     class openClientView implements ActionListener {
         public void actionPerformed(ActionEvent i) {
-            new ClientView();
+            new Menu_ClientView();
+        }
+    }
+    class openKitchenView implements ActionListener {
+        public void actionPerformed(ActionEvent a) {
+            new KitchenView();
         }
     }
     class openKitchenView implements ActionListener {
