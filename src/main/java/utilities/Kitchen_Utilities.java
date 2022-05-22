@@ -1,8 +1,8 @@
 package utilities;
 
 import models.Orders;
-import models.Product;
 
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +29,7 @@ public class Kitchen_Utilities {
 
             while (rs.next()){
                 order = new Orders(
-                        0,0,
+                        0,0, 0,
                         rs.getInt("id_product"),
                         rs.getInt("quantity"),
                         rs.getInt("state"));
@@ -55,8 +55,8 @@ public class Kitchen_Utilities {
             PreparedStatement update = c.prepareStatement("update product_orders " +
                     "set state = ?" + " where id_orders = ?");
 
-            update.setInt(1, 1),
-            update.setInt(2, order.getId_order());
+            update.setInt(1, 1);
+            update.setInt(2, order.getIdOrder());
 
 
             update.executeUpdate();
